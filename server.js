@@ -18,8 +18,25 @@ app.use(cors());
 // Initialize the main project folder
 app.use(express.static('website'));
 
+// GET Route to retrieve projectData
+app.get('/weather', (req, res) => {
+    res.send("This is weather end point");
+  });
 
-// Setup Server
+app.get("*", (req, res) => {
+    res.send("Page not found.");
+});
+
+  app.post('/', (req, res) => {
+    const {date, temp, content} = req.body
+    projectData[date] = {
+      temp,
+      content,
+    }
+    res.status(201).send()
+  })
+
+  // Setup Server
 const port = 8000
 
 const server = app.listen(port, ()=>{console.log(`running on localhost: ${port}`)})
