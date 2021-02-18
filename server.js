@@ -19,17 +19,17 @@ app.use(cors());
 app.use(express.static('website'));
 
   // Setup Server
-  const port = 3000;
+  const port = 8000;
 
 // TODO-Spin up the server
 const server = app.listen(port, ()=>{console.log(`running on localhost: ${port}`)})
 
 // GET Route to retrieve projectData
-app.get('/all', (req res) => {
-    res.send(projectData);
+app.get('/add', (req, res)=> {
+  res.send(projectData);
 });
 
-app.post('/add', (req res) => {
-    projectData.push(req.body);
-    res.send(true);
+app.post('/all', function (req, res) {
+  projectData.push(req.body)
+  console.log(projectData)
 });
