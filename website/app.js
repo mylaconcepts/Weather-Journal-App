@@ -1,7 +1,8 @@
 
 /* Weather API variables */
-const baseURL = 'http://api.openweathermap.org/data/2.5/weather?q={city}&zip='
-const apiKey = '45d9430d92b61aec3f57298753c39820'
+const baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip='
+const apiKey = '&appid=af8187d52ec3361fbb06038a90a2ef8b&units=imperial'
+
 
 
 // Create a new date instance dynamically with JS
@@ -12,7 +13,7 @@ let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
 const projectDataURL = '/all'*/
 
 /* Function called by event listener */
-generate.addEventListener('click', clickedGenerate);
+document.getElementById('generate').addEventListener('click', clickedGenerate);
 
 function clickedGenerate(e) {
     e.preventDefault();
