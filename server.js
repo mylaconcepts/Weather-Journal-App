@@ -26,8 +26,9 @@ const server = app.listen(port, ()=>{console.log(`running on localhost: ${port}`
 
 // GET Route to retrieve projectData
 app.get('/all', (req, res) => {
-  res.send(projectData);
-})
+  res.send(projectData)
+  console.log(projectData)
+});
 
 app.post('/add', (req, res) => {
  
@@ -36,9 +37,3 @@ app.post('/add', (req, res) => {
       date: req.body.date,
       feelings: req.body.feelings
   };
-
-  projectData.push(newData);
-  //res.send(newData);
-  console.log(newData);
-
-})

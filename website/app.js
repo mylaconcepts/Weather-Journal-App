@@ -1,3 +1,7 @@
+const date = document.getElementById('date');
+const temp = document.getElementById('temp');
+const content = document.getElementById('content');
+
 
 /* Weather API variables */
 const baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip='
@@ -23,7 +27,7 @@ function clickedGenerate(e) {
 
     retrieveWeather(baseURL, zip, apiKey)
     .then(function (userData){
-        getData('/add',  { date: newDate, temp: userData.main.temp, content})
+        getData('/add',  { date:newDate, temp:userData.main.temp, content})
     }).then(function (newData) {
         updateUI()
     })
