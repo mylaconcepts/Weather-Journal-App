@@ -25,20 +25,20 @@ app.use(express.static('website'));
 const server = app.listen(port, ()=>{console.log(`running on localhost: ${port}`)})
 
 // GET Route to retrieve projectData
-app.get('', (req, res)=> {
+app.get('/all', (req, res) => {
   res.send(projectData);
-});
+})
 
-app.post('/add', addProjectData);
-function addProjectData(request,response) {
-    let data = request.body;
-    projectData.temp = data.temp;
-    projectData.date =  data.date;
-    projectData.content = data.content;
-    response.send(projectData);
-}
+app.post('/add', (req, res) => {
+ 
+  const newData = {
+      temp: req.body.temp,
+      date: req.body.date,
+      feelings: req.body.feelings
+  };
 
-/*app.post('/all', function (req, res) {
-  projectData.push(req.body)
-  console.log(projectData)
-});*/
+  projectData.push(newData);
+  //res.send(newData);
+  console.log(newData);
+
+})

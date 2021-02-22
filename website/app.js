@@ -24,7 +24,7 @@ function clickedGenerate(e) {
     retrieveWeather(baseURL, zip, apiKey)
     .then(function (userData){
         getData('/add',  { date: newDate, temp: userData.main.temp, content})
-    }).then(function () {
+    }).then(function (newData) {
         updateUI()
     })
     //form.reset();
@@ -45,16 +45,20 @@ const retrieveWeather = async (baseURL, zip, apiKey) => {
 /* POST data */
 const getData = async (url = '', data = {}) =>{
 
-    const res = await fetch(url, {
+    const req = await fetch(url, {
         method: 'POST',
         credentials: 'same-origin',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+            date: data.date,
+            temp: data.temp,
+            content: data.content
+          })
     });
     try {
-        const newData = await res.json();
+        const newData = await req.json();
         console.log(newData);
         return newData
     }catch(error) {
