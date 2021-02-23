@@ -36,4 +36,5 @@ app.post('/add', (req, res) => {
       temp: req.body.temp,
       date: req.body.date,
       feelings: req.body.feelings
-  };
+  }
+});
