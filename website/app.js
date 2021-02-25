@@ -27,10 +27,10 @@ function clickedGenerate(e) {
 
     retrieveWeather(baseURL, zip, apiKey)
     .then(function (userData){
-        getData('/add',  { date:newDate, temp:userData.main.temp, content})
+        postData('/add',  {date:newDate, temp:userData.main.temp, content: content})
     }).then(function (newData) {
         updateUI()
-    })
+    });
     //form.reset();
 }
 
@@ -47,7 +47,7 @@ const retrieveWeather = async (baseURL, zip, apiKey) => {
 
 
 /* POST data */
-const getData = async (url = '', data = {}) =>{
+const postData = async (url = '', data = {}) =>{
 
     const req = await fetch(url, {
         method: 'POST',
@@ -82,4 +82,3 @@ const updateUI = async () => {
         console.log("error", error);
     }
 }
-

@@ -24,17 +24,21 @@ app.use(express.static('website'));
 // TODO-Spin up the server
 const server = app.listen(port, ()=>{console.log(`running on localhost: ${port}`)})
 
-// GET Route to retrieve projectData
+
+  app.post('/add', (req, res) => {
+ 
+    const newData = {
+      temp: req.body.temp,
+      date: req.body.date,
+      content: req.body.content
+  }
+      projectData = newData;
+      res.send(newtData);
+       
+  });
+
+  // GET Route to retrieve projectData
 app.get('/all', (req, res) => {
   res.send(projectData)
   console.log(projectData)
-});
-
-app.post('/add', (req, res) => {
- 
-  const newData = {
-      temp: req.body.temp,
-      date: req.body.date,
-      feelings: req.body.feelings
-  }
 });
