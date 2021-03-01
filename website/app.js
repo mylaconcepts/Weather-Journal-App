@@ -1,7 +1,5 @@
 const date = document.getElementById('date');
 const temp = document.getElementById('temp');
-const content = document.getElementById('content');
-
 
 /* Weather API variables */
 const baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip='
@@ -13,8 +11,6 @@ const apiKey = '&appid=af8187d52ec3361fbb06038a90a2ef8b&units=imperial'
 let d = new Date();
 let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
 
-/*const dataURL = '/add'
-const projectDataURL = '/all'*/
 
 /* Function called by event listener */
 document.getElementById('generate').addEventListener('click', clickedGenerate);
@@ -27,17 +23,16 @@ function clickedGenerate(e) {
     .then(function (userData){
         postData('/add',  {date:newDate, temp:userData.main.temp, content:content});
     })
-    .then(function (newData) {
+    .then(function(newData) {
         updateUI();
     })
     .catch(function(error) {
         console.log(error);
       });
-    //form.reset();
 }
 
 /* get web API data*/
-const retrieveWeather = async (baseURL, zip, apiKey) => {
+const retrieveWeather = async(baseURL, zip, apiKey) => {
     const res = await fetch(baseURL + zip + apiKey);
     try {
         const userData = await res.json();
@@ -65,7 +60,7 @@ const postData = async (url = '', data = {}) =>{
     try {
         const newData = await req.json();
         console.log(newData);
-        return newData
+        return newData;
     }catch(error) {
         console.log("error", error);
     }
