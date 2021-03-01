@@ -21,16 +21,18 @@ document.getElementById('generate').addEventListener('click', clickedGenerate);
 
 function clickedGenerate(e) {
     e.preventDefault();
-
     const zip = document.getElementById('zip').value;
     const content = document.getElementById('feelings').value;
-
     retrieveWeather(baseURL, zip, apiKey)
     .then(function (userData){
-        postData('/add',  {date:newDate, temp:userData.main.temp, content: content})
-    }).then(function (newData) {
-        updateUI()
-    });
+        postData('/add',  {date:newDate, temp:userData.main.temp, content:content});
+    })
+    .then(function (newData) {
+        updateUI();
+    })
+    .catch(function(error) {
+        console.log(error);
+      });
     //form.reset();
 }
 
@@ -48,7 +50,6 @@ const retrieveWeather = async (baseURL, zip, apiKey) => {
 
 /* POST data */
 const postData = async (url = '', data = {}) =>{
-
     const req = await fetch(url, {
         method: 'POST',
         credentials: 'same-origin',
